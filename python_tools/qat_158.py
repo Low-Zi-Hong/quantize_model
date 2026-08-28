@@ -5,6 +5,7 @@ from torch.nn.utils import clip_grad_norm_
 import torch.nn as nn
 import torch.nn.functional as F
 from safetensors.torch import save_file
+import os
 
 block_size = 512              # 你的 ESP32-S3 上下文窗口长度
 batch_size = 4                # 训练批次大小
@@ -145,6 +146,12 @@ if __name__ == '__main__':
     print("🚀 初始化 Demo 冲刺模式...")
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"当前算力设备: {device}") # 必须确保这里打印的是 cuda！
+
+    # 强制开启 JIT 编译，让 PyTorch 现场为你的 sm_120 架构编译 Kernel
+    os.environ["TORCH_CUDA_ARCH_LIST"] = "12.0"
+    # 关闭某些可能因为新架构还不支持的 FlashAttention 后端
+    torch.backends.cuda.enable_math_sdp(True)
+    torch.backends.cudnn.benchmark = True
 
     # 1. 加载你的裁剪模型
     tokenizer = AutoTokenizer.from_pretrained("../cropped_Qwen")
