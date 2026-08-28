@@ -163,3 +163,30 @@ Desktop.ini
 
 *.safetensors
 *.bin
+
+# --- uv specific ---
+# Virtual environment created by uv
+.venv/
+
+# --- General Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / Build artifacts
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
