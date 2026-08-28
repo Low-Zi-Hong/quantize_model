@@ -45,7 +45,7 @@ def unpack_4bit_emb(packed_weight, scales):
 
 def load_and_generate(
     original_model_path="../cropped_Qwen",
-    safetensors_path="../cropped_Qwen/qwen_158_int4.safetensors"
+    safetensors_path="../cropped_Qwen/qwen_158.safetensors"
 ):
     print("⏳ 正在加载原始架构...")
     # 先加载原始的空壳架构
@@ -109,7 +109,7 @@ def load_and_generate(
     model.eval()
     
     # 测试 Prompt
-    prompt = "A"
+    prompt = "Q: Who are you?"
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     
     with torch.no_grad():

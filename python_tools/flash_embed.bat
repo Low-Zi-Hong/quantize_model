@@ -1,1 +1,1 @@
-python -m esptool --chip esp32s3 --port COM8 --baud 2000000 write_flash 0x150000 ../cropped_Qwen/bins/embed.bin
+python -m esptool --chip esp32s3 --port COM3 --baud 2000000 write_flash 0x150000 ../cropped_Qwen/bins/embed.bin
